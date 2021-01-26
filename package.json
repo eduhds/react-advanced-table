@@ -1,20 +1,40 @@
 {
-  "name": "react-advanced-table",
-  "version": "1.0.0",
-  "description": "[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/eduhds/react-advanced-table)",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/eduhds/react-advanced-table.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/eduhds/react-advanced-table/issues"
-  },
-  "homepage": "https://github.com/eduhds/react-advanced-table#readme"
+	"name": "react-advanced-table",
+	"version": "0.0.1",
+	"description": "[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/eduhds/react-advanced-table)",
+	"main": "build/index.js",
+	"peerDependencies": {
+		"react": "^15.5.4"
+	},
+	"dependencies": {
+		"react": "^15.5.4",
+		"webpack": "^2.6.1"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "webpack --watch",
+		"build": "webpack"
+	},
+	"author": {
+		"name": "Eduardo",
+		"email": "eduardohds.dev@outlook.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/eduhds/react-advanced-table.git"
+	},
+	"keywords": [],
+	"devDependencies": {
+		"babel-cli": "^6.24.1",
+		"babel-core": "^6.24.1",
+		"babel-loader": "^7.0.0",
+		"babel-plugin-transform-object-rest-spread": "^6.23.0",
+		"babel-plugin-transform-react-jsx": "^6.24.1",
+		"babel-preset-env": "^1.5.1"
+	},
+	"bugs": {
+		"url": "https://github.com/eduhds/react-advanced-table/issues"
+	},
+	"homepage": "https://github.com/eduhds/react-advanced-table#readme",
+	"license": "ISC"
 }

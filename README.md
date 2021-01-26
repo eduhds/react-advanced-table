@@ -10,4 +10,8 @@ Em desenvolvimento
 
 ## To Do
 
+## Install
+
+yarn add git+https://git@github.com/eduhds/react-advanced-table.git
+
 ## Exemplo
