@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Table({ colunms, rows = [] }) {
+export default function ReactAdvancedTable({ colunms, rows = [] }) {
 	const [searchAll, setSearchAll] = useState('');
 	const keys = Object.keys(rows[0]);
 	colunms = colunms || keys;
