@@ -8,7 +8,19 @@ Em desenvolvimento
 
 ## Features
 
+-   Ordenação de linhas
+-   Pesquisa todos
+-   Agrupamento
+
 ## To Do
+
+-   Pesquisa coluna
+-   Quantidade de linhas
+-   Paginação
+-   Scroll vertical e horizontal
+-   Exportação de dados csv/pdf/print
+-   Limpar filtros
+-   Responsividade
 
 ## Install
 

@@ -9,7 +9,12 @@ export default class ReactAdvancedTable extends Component {
 	}
 
 	render() {
-		let { colunms, rows = [] } = this.props;
+		let {
+			colunms, // Array de strings, nomes das colunas
+			rows = [], // Array de objetos, dados da linha
+			grupo, // String, nome da coluna para agrupamento
+			colOrder // String, nome da coluna para ordenação
+		} = this.props;
 
 		const { searchAll } = this.state;
 
@@ -28,11 +33,11 @@ export default class ReactAdvancedTable extends Component {
 		}
 
 		// agrupar
-		let grupo = ''; // ex.: idade
 		let grupos = null;
 		if (grupo) {
 			grupos = {};
 			let diferentes = [];
+
 			rows.map(r => r[grupo]).map(g => {
 				if (!diferentes.includes(g)) {
 					diferentes.push(g);
@@ -42,20 +47,17 @@ export default class ReactAdvancedTable extends Component {
 			diferentes.forEach(dif => {
 				grupos[dif] = rows.filter(r => r[grupo] === dif);
 			});
-
-			console.log('grupos', grupos);
 		}
 
 		// Ordenar
-		let colOrder = ''; // 'idade';
 		if (colOrder) {
 			rows = rows.sort(sortAlphabeticallyByChild(colOrder));
 		}
 
 		return (
-			<div>
+			<div style={{ width: '100%' }}>
 				<input onChange={e => this.setState({ searchAll: e.target.value })} />
-				<table>
+				<table style={{ width: '100%' }}>
 					<thead>
 						<tr>
 							{colunms.map((item, index) => (
@@ -63,7 +65,27 @@ export default class ReactAdvancedTable extends Component {
 							))}
 						</tr>
 					</thead>
-					{!grupos && (
+
+					{grupos ? (
+						<tbody>
+							{Object.keys(grupos).map((key, index) => (
+								<tr key={index}>
+									<td>
+										<div>{key}</div>
+										{grupos[key].map((item, index) => (
+											<div key={index}>
+												{keys
+													.map(k => item[k])
+													.map((cel, id) => (
+														<span key={id}>{cel}</span>
+													))}
+											</div>
+										))}
+									</td>
+								</tr>
+							))}
+						</tbody>
+					) : (
 						<tbody>
 							{rows.map((item, index) => (
 								<tr key={index}>
@@ -73,27 +95,6 @@ export default class ReactAdvancedTable extends Component {
 											<td key={id}>{cel}</td>
 										))}
 								</tr>
-							))}
-						</tbody>
-					)}
-
-					{grupos && (
-						<tbody>
-							{Object.keys(grupos).map((key, index) => (
-								<React.Fragment key={index}>
-									<tr>
-										<td>{key}</td>
-									</tr>
-									{grupos[key].map((item, index) => (
-										<tr key={index}>
-											{keys
-												.map(k => item[k])
-												.map((cel, id) => (
-													<td key={id}>{cel}</td>
-												))}
-										</tr>
-									))}
-								</React.Fragment>
 							))}
 						</tbody>
 					)}

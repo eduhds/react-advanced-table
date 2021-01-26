@@ -120,7 +120,9 @@ var ReactAdvancedTable = function (_Component) {
 			var _props = this.props,
 			    colunms = _props.colunms,
 			    _props$rows = _props.rows,
-			    rows = _props$rows === undefined ? [] : _props$rows;
+			    rows = _props$rows === undefined ? [] : _props$rows,
+			    grupo = _props.grupo,
+			    colOrder = _props.colOrder;
 			var searchAll = this.state.searchAll;
 
 
@@ -141,11 +143,11 @@ var ReactAdvancedTable = function (_Component) {
 			}
 
 			// agrupar
-			var grupo = ''; // ex.: idade
 			var grupos = null;
 			if (grupo) {
 				grupos = {};
 				var diferentes = [];
+
 				rows.map(function (r) {
 					return r[grupo];
 				}).map(function (g) {
@@ -159,25 +161,22 @@ var ReactAdvancedTable = function (_Component) {
 						return r[grupo] === dif;
 					});
 				});
-
-				console.log('grupos', grupos);
 			}
 
 			// Ordenar
-			var colOrder = ''; // 'idade';
 			if (colOrder) {
 				rows = rows.sort(sortAlphabeticallyByChild(colOrder));
 			}
 
 			return _react2.default.createElement(
 				'div',
-				null,
+				{ style: { width: '100%' } },
 				_react2.default.createElement('input', { onChange: function onChange(e) {
 						return _this2.setState({ searchAll: e.target.value });
 					} }),
 				_react2.default.createElement(
 					'table',
-					null,
+					{ style: { width: '100%' } },
 					_react2.default.createElement(
 						'thead',
 						null,
@@ -193,7 +192,40 @@ var ReactAdvancedTable = function (_Component) {
 							})
 						)
 					),
-					!grupos && _react2.default.createElement(
+					grupos ? _react2.default.createElement(
+						'tbody',
+						null,
+						Object.keys(grupos).map(function (key, index) {
+							return _react2.default.createElement(
+								'tr',
+								{ key: index },
+								_react2.default.createElement(
+									'td',
+									null,
+									_react2.default.createElement(
+										'div',
+										null,
+										key
+									),
+									grupos[key].map(function (item, index) {
+										return _react2.default.createElement(
+											'div',
+											{ key: index },
+											keys.map(function (k) {
+												return item[k];
+											}).map(function (cel, id) {
+												return _react2.default.createElement(
+													'span',
+													{ key: id },
+													cel
+												);
+											})
+										);
+									})
+								)
+							);
+						})
+					) : _react2.default.createElement(
 						'tbody',
 						null,
 						rows.map(function (item, index) {
@@ -207,40 +239,6 @@ var ReactAdvancedTable = function (_Component) {
 										'td',
 										{ key: id },
 										cel
-									);
-								})
-							);
-						})
-					),
-					grupos && _react2.default.createElement(
-						'tbody',
-						null,
-						Object.keys(grupos).map(function (key, index) {
-							return _react2.default.createElement(
-								_react2.default.Fragment,
-								{ key: index },
-								_react2.default.createElement(
-									'tr',
-									null,
-									_react2.default.createElement(
-										'td',
-										null,
-										key
-									)
-								),
-								grupos[key].map(function (item, index) {
-									return _react2.default.createElement(
-										'tr',
-										{ key: index },
-										keys.map(function (k) {
-											return item[k];
-										}).map(function (cel, id) {
-											return _react2.default.createElement(
-												'td',
-												{ key: id },
-												cel
-											);
-										})
 									);
 								})
 							);
